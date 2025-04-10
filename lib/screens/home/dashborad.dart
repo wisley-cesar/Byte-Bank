@@ -9,7 +9,7 @@ class Dashborad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(),
+      appBar: MyAppBar(title: 'Dashboard'),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -19,7 +19,7 @@ class Dashborad extends StatelessWidget {
             icon: Icons.people,
             title: 'Contats',
             onPressed: () {
-              print('teste');
+              Navigator.of(context).pushNamed('/contacts');
             },
           ),
         ],
