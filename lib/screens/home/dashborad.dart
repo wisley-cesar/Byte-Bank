@@ -1,4 +1,4 @@
-import 'package:bytebank/screens/home/widget/my_app_bar.dart';
+import 'package:bytebank/widget/my_app_bar.dart';
 import 'package:bytebank/screens/home/widget/my_button.dart';
 import 'package:bytebank/screens/home/widget/my_image.dart';
 import 'package:flutter/material.dart';
