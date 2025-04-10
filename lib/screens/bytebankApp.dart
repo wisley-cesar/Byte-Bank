@@ -1,3 +1,4 @@
+import 'package:bytebank/screens/contacts_list.dart';
 import 'package:bytebank/screens/home/dashborad.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,10 @@ class Bytebankapp extends StatelessWidget {
       ),
       home: const Dashborad(),
       debugShowCheckedModeBanner: false,
+      routes: {
+        '/home': (context) => Dashborad(),
+        '/contacts': (context) => const ContactsList(),
+      },
     );
   }
 }
