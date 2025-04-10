@@ -15,7 +15,11 @@ class ContactsList extends StatelessWidget {
         subTitle: '465465465165',
         onTap: () {},
       ),
-      floatingActionButton: MyButtonContacts(onPressed: () {}),
+      floatingActionButton: MyButtonContacts(
+        onPressed: () {
+          Navigator.of(context).pushNamed('/contacts-form');
+        },
+      ),
     );
   }
 }
