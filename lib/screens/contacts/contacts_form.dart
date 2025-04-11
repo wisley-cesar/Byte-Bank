@@ -1,8 +1,21 @@
+import 'dart:math';
+
+import 'package:bytebank/Model/contact.dart';
 import 'package:bytebank/widget/my_app_bar.dart';
 import 'package:flutter/material.dart';
 
-class ContactsForm extends StatelessWidget {
-  const ContactsForm({super.key});
+class ContactsForm extends StatefulWidget {
+  ContactsForm({super.key});
+
+  @override
+  State<ContactsForm> createState() => _ContactsFormState();
+}
+
+class _ContactsFormState extends State<ContactsForm> {
+  final TextEditingController _nameController = TextEditingController();
+
+  final TextEditingController _accountNumberController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +27,13 @@ class ContactsForm extends StatelessWidget {
         child: Column(
           children: [
             TextFormField(
+              controller: _nameController,
               keyboardType: TextInputType.name,
               decoration: InputDecoration(label: Text('Nome Completo')),
               style: TextStyle(fontSize: 24),
             ),
             TextFormField(
+              controller: _accountNumberController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(label: Text('Numero da Conta')),
               style: TextStyle(fontSize: 24),
@@ -31,7 +46,16 @@ class ContactsForm extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               child: InkWell(
                 onTap: () {
-                  Navigator.of(context).pop();
+                  final String name = _nameController.text;
+                  final int? accountNumber = int.tryParse(
+                    _accountNumberController.text,
+                  );
+                  final Contact newContact = Contact(
+                    id: Random().nextInt(1000),
+                    name: name,
+                    accountNumber: accountNumber!,
+                  );
+                  Navigator.pop(context, newContact);
                 },
                 child: SizedBox(
                   height: 50,

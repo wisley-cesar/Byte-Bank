@@ -21,7 +21,7 @@ class Bytebankapp extends StatelessWidget {
       routes: {
         '/home': (context) => Dashborad(),
         '/contacts': (context) => const ContactsList(),
-        '/contacts-form': (context) => const ContactsForm(),
+        '/contacts-form': (context) => ContactsForm(),
       },
     );
   }
