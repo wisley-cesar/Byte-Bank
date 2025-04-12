@@ -10,17 +10,11 @@ class ContactsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(title: 'Contatos'),
-      body: MyCardToList(
-        title: 'Wisley',
-        subTitle: '465465465165',
-        onTap: () {},
-      ),
+      body: MyCardToList(),
       floatingActionButton: MyButtonContacts(
         onPressed: () {
           Navigator.of(context).pushNamed('/contacts-form').then((newContact) {
-            if (newContact != null) {
-              
-            }
+            if (newContact != null) {}
           });
         },
       ),
