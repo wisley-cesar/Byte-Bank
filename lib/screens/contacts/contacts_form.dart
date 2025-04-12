@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bytebank/Model/contact.dart';
+import 'package:bytebank/database/app_database.dart';
 import 'package:bytebank/widget/my_app_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -51,11 +52,10 @@ class _ContactsFormState extends State<ContactsForm> {
                     _accountNumberController.text,
                   );
                   final Contact newContact = Contact(
-                    id: Random().nextInt(1000),
                     name: name,
                     accountNumber: accountNumber!,
                   );
-                  Navigator.pop(context, newContact);
+                  save(newContact).then((id) => Navigator.pop(context));
                 },
                 child: SizedBox(
                   height: 50,
