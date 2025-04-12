@@ -1,15 +1,16 @@
 import 'package:bytebank/Model/contact.dart';
-import 'package:bytebank/database/app_database.dart';
+import 'package:bytebank/dao/contact_dao.dart';
 import 'package:bytebank/screens/contacts/widget/contact_item.dart';
 import 'package:flutter/material.dart';
 
 class MyCardToList extends StatelessWidget {
-  const MyCardToList({super.key});
+  final ContactDao _contactDao = ContactDao();
+  MyCardToList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Contact>>(
-      future: findAll(),
+      future: _contactDao.findAll(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());

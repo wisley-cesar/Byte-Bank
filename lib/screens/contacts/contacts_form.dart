@@ -1,18 +1,17 @@
-import 'dart:math';
-
 import 'package:bytebank/Model/contact.dart';
-import 'package:bytebank/database/app_database.dart';
+import 'package:bytebank/dao/contact_dao.dart';
 import 'package:bytebank/widget/my_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class ContactsForm extends StatefulWidget {
-  ContactsForm({super.key});
+  const ContactsForm({super.key});
 
   @override
   State<ContactsForm> createState() => _ContactsFormState();
 }
 
 class _ContactsFormState extends State<ContactsForm> {
+  final ContactDao _contactDao = ContactDao();
   final TextEditingController _nameController = TextEditingController();
 
   final TextEditingController _accountNumberController =
@@ -55,7 +54,10 @@ class _ContactsFormState extends State<ContactsForm> {
                     name: name,
                     accountNumber: accountNumber!,
                   );
-                  save(newContact).then((id) => Navigator.pop(context));
+                  _contactDao
+                      .save(newContact)
+                      // ignore: use_build_context_synchronously
+                      .then((id) => Navigator.pop(context));
                 },
                 child: SizedBox(
                   height: 50,
