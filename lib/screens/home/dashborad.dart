@@ -1,3 +1,4 @@
+import 'package:bytebank/utils/my_rotas.dart';
 import 'package:bytebank/widget/my_app_bar.dart';
 import 'package:bytebank/screens/home/widget/my_button.dart';
 import 'package:bytebank/screens/home/widget/my_image.dart';
@@ -15,12 +16,26 @@ class Dashborad extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           MyImage(imagePath: 'images/bytebank_logo.png'),
-          MyButton(
-            icon: Icons.people,
-            title: 'Contats',
-            onPressed: () {
-              Navigator.of(context).pushNamed('/contacts');
-            },
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                MyButton(
+                  icon: Icons.monetization_on,
+                  title: 'Tranferencias',
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(MyRotas.transfer);
+                  },
+                ),
+                MyButton(
+                  icon: Icons.description,
+                  title: 'Transação',
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(MyRotas.trasactionList);
+                  },
+                ),
+              ],
+            ),
           ),
         ],
       ),
