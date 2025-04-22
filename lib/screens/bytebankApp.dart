@@ -1,7 +1,9 @@
 // ignore: file_names
 import 'package:bytebank/screens/contacts/contacts_form.dart';
-import 'package:bytebank/screens/contacts/contacts_list.dart';
+import 'package:bytebank/screens/contacts/transfer_list.dart';
 import 'package:bytebank/screens/home/dashborad.dart';
+import 'package:bytebank/screens/transaction/TransactionsList.dart';
+import 'package:bytebank/utils/my_rotas.dart';
 import 'package:flutter/material.dart';
 
 class Bytebankapp extends StatelessWidget {
@@ -19,10 +21,12 @@ class Bytebankapp extends StatelessWidget {
       ),
       home: const Dashborad(),
       debugShowCheckedModeBanner: false,
+      initialRoute: MyRotas.home,
       routes: {
-        '/home': (context) => Dashborad(),
-        '/contacts': (context) => const ContactsList(),
-        '/contacts-form': (context) => ContactsForm(),
+        MyRotas.home: (context) => Dashborad(),
+        MyRotas.contactsForm: (context) => const ContactsForm(),
+        MyRotas.transfer: (context) => TransferList(),
+        MyRotas.trasactionList: (context) => TransactionsList(),
       },
     );
   }

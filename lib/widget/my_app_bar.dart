@@ -7,12 +7,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      // forceMaterialTransparency: true,
       iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.white),
       title: Text(
         title,
         style: TextStyle(
           color: Colors.white,
-          fontSize: 20, 
+          fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
       ),
