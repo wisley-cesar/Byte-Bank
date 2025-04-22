@@ -16,21 +16,26 @@ class Dashborad extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           MyImage(imagePath: 'images/bytebank_logo.png'),
-          Row(
-            children: [
-              MyButton(
-                icon: Icons.monetization_on,
-                title: 'Tranferencias',
-                onPressed: () {
-                  Navigator.of(context).pushNamed(MyRotas.transfer);
-                },
-              ),
-              MyButton(
-                icon: Icons.description,
-                title: 'Transação',
-                onPressed: () {},
-              ),
-            ],
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                MyButton(
+                  icon: Icons.monetization_on,
+                  title: 'Tranferencias',
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(MyRotas.transfer);
+                  },
+                ),
+                MyButton(
+                  icon: Icons.description,
+                  title: 'Transação',
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(MyRotas.trasactionList);
+                  },
+                ),
+              ],
+            ),
           ),
         ],
       ),
