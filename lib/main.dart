@@ -4,5 +4,5 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(const Bytebankapp());
-  findAll();
+  findAll().then((transactions) => print('transactions: $transactions'));
 }
