@@ -1,10 +1,10 @@
 import 'package:bytebank/Model/contact.dart';
 
-class Transaction {
+class MyTransaction {
   final double value;
   final Contact contact;
 
-  Transaction({required this.value, required this.contact});
+  MyTransaction({required this.value, required this.contact});
 
   @override
   String toString() {

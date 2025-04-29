@@ -1,6 +1,11 @@
+import 'dart:convert';
+
+import 'package:bytebank/Model/contact.dart';
+import 'package:bytebank/Model/my_transaction.dart';
 import 'package:http/http.dart';
 import 'package:http_interceptor/http_interceptor.dart';
 import 'package:http_interceptor/models/interceptor_contract.dart';
+import 'package:sqflite/sqflite.dart';
 
 class LoggerInterceptor extends InterceptorContract {
   @override
@@ -30,12 +35,33 @@ class LoggerInterceptor extends InterceptorContract {
   }
 }
 
-void findAll() async {
+Future<List<MyTransaction>> findAll() async {
   // Corrigido: 'findeAll' para 'findAll'
   final Client client = InterceptedClient.build(
     interceptors: [LoggerInterceptor()],
   );
   final response = await client.get(
-    Uri.parse('http://192.168.1.16:8080/transactions'),
+    Uri.parse('http://localhost:8080/transactions'),
   );
+
+  final List<dynamic> decodeJson = jsonDecode(response.body);
+
+  // print('decodeJson: $decodeJson');
+
+  final List<MyTransaction> transactions = [];
+
+  for (Map<String, dynamic> transactionJson in decodeJson) {
+    final Map<String, dynamic> conctactJson = transactionJson['contact'];
+
+    final MyTransaction transaction = MyTransaction(
+      value: transactionJson['value'],
+      contact: Contact(
+        id: 0,
+        name: conctactJson['name'],
+        accountNumber: conctactJson['accountNumber'],
+      ),
+    );
+    transactions.add(transaction);
+  }
+  return transactions;
 }

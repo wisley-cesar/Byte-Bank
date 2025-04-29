@@ -1,6 +1,7 @@
 import 'package:bytebank/Model/contact.dart';
 import 'package:bytebank/dao/contact_dao.dart';
 import 'package:bytebank/screens/contacts/widget/contact_item.dart';
+import 'package:bytebank/widget/my_progressor_indequetor.dart';
 import 'package:flutter/material.dart';
 
 class MyCardToList extends StatelessWidget {
@@ -13,7 +14,7 @@ class MyCardToList extends StatelessWidget {
       future: _contactDao.findAll(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: MyProgressorIndequetor());
         } else if (snapshot.hasError) {
           return Text('Erro: ${snapshot.error}');
         } else if (snapshot.hasData) {
