@@ -1,11 +1,12 @@
 import 'package:bytebank/Model/my_transaction.dart';
+import 'package:bytebank/screens/transaction/widget/my_erro_menssage.dart';
 import 'package:bytebank/service/http/webc_client.dart';
 import 'package:bytebank/widget/my_app_bar.dart';
 import 'package:bytebank/widget/my_progressor_indequetor.dart';
 import 'package:flutter/material.dart';
 
 class TransactionsList extends StatelessWidget {
-  TransactionsList({super.key});
+  const TransactionsList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +19,18 @@ class TransactionsList extends StatelessWidget {
             return Center(child: MyProgressorIndequetor());
           } else if (snapshot.hasError) {
             return Center(
-              child: Text(
-                'Erro: Por vor favor, tente novamente mais tarde',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+              child: MyErroMenssage(
+                menssage: 'Erro: Por vor favor, tente novamente mais tarde',
+                icon: Icons.error,
               ),
             );
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('Não tem transações'));
+            return Center(
+              child: MyErroMenssage(
+                menssage: 'Não tem transações',
+                icon: Icons.warning,
+              ),
+            );
           }
           final List<MyTransaction>? transactions = snapshot.data;
           return ListView.builder(
