@@ -67,7 +67,7 @@ Future<List<MyTransaction>> findAll() async {
   return transactions;
 }
 
-void save(MyTransaction transaction) async {
+Future<MyTransaction> save(MyTransaction transaction) async {
   final Map<String, dynamic> transactionsMap = {
     'value': transaction.value,
     'contact': {
@@ -78,9 +78,21 @@ void save(MyTransaction transaction) async {
   };
   final String transactionsJson = jsonEncode(transactionsMap);
 
-  client.post(
+  final Response response = await client.post(
     Uri.parse(url),
     headers: {'Content-Type': 'application/json', 'password': '1000'},
     body: transactionsJson,
+  );
+
+  Map<String, dynamic> responseJson = jsonDecode(response.body);
+
+  final Map<String, dynamic> contactJson = responseJson['contact'];
+  return MyTransaction(
+    value: responseJson['value'],
+    contact: Contact(
+      id: contactJson['id'],
+      name: contactJson['name'],
+      accountNumber: contactJson['accountNumber'],
+    ),
   );
 }
