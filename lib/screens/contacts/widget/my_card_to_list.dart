@@ -1,6 +1,8 @@
 import 'package:bytebank/Model/contact.dart';
 import 'package:bytebank/dao/contact_dao.dart';
 import 'package:bytebank/screens/contacts/widget/contact_item.dart';
+import 'package:bytebank/screens/transaction_form.dart';
+import 'package:bytebank/utils/my_rotas.dart';
 import 'package:bytebank/widget/my_progressor_indequetor.dart';
 import 'package:flutter/material.dart';
 
@@ -30,8 +32,17 @@ class MyCardToList extends StatelessWidget {
           return ListView.builder(
             itemCount: contacts.length,
             itemBuilder: (context, index) {
-              final Contact contac = contacts[index];
-              return ContactItem(contact: contac);
+              final Contact contact = contacts[index];
+              return ContactItem(
+                contact: contact,
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => TransactionForm(contact: contact),
+                    ),
+                  );
+                },
+              );
             },
           );
         } else {
