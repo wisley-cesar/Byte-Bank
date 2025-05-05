@@ -16,10 +16,12 @@ class _ContactsListState extends State<TransferList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(title: 'List de transferências'),
-      body: MyCardToList(),
+      body: MyCardToList(
+        
+      ),
       floatingActionButton: MyButtonContacts(
         onPressed: () async {
-          await Navigator.of(context).pushNamed(MyRotas.contactsForm);
+          await Navigator.of(context).pushNamed(MyRotas.contactsForm,);
           setState(() {});
         },
       ),
